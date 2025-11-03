@@ -1,0 +1,13 @@
+- name: loop through list get index and itemb at index
+  hosts: localhost
+  vars:
+  tools:
+    - linux
+    - ansible
+    - docker
+
+  tasks:
+    - name: Print tool with index
+      ansible.builtin.debug:
+        msg: "Tool {{ loop.index }}: {{ item }}"
+      loop: "{{ tools }}"

@@ -1,0 +1,21 @@
+- name: String filters demo
+  hosts: localhost
+  connection: local
+  vars:
+    my_string: "  hello world 123  "
+  tasks:
+    - name: Uppercase
+      ansible.builtin.debug:
+        msg: "{{ my_string | upper }}"
+
+    - name: Trim spaces
+      ansible.builtin.debug:
+        msg: "{{ my_string | trim }}"
+
+    - name: Replace substring
+      ansible.builtin.debug:
+        msg: "{{ my_string | replace('world', 'Ansible') }}"
+
+    - name: Split string
+      ansible.builtin.debug:
+        msg: "{{ my_string | split(' ') }}"

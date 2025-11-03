@@ -1,0 +1,7 @@
+- name: loop over list of ele in var
+  hosts: localhost
+  tasks:  
+    - name: Print numbers from 1 to 5
+      ansible.builtin.debug:
+        msg: "Number: {{ item }}"
+      loop: "{{ range(1, 6) | list }}"

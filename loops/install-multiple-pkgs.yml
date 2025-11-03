@@ -1,0 +1,15 @@
+- name: Install essential packages   # play description 
+  hosts: myhosts
+  become: yes                        # sudo privilages
+  vars:     
+     packages:  # list name 
+      - git     #list ele
+      - vim
+      - tree
+      - unzip
+  tasks: 
+    - name: Install all packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ packages }}"

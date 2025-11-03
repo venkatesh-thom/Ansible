@@ -1,0 +1,13 @@
+- name: Vars Files Example
+  hosts: webservers
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Install package from vars file
+      ansible.builtin.yum:
+        name: "{{ package_name }}"
+        state: present
+
+    - name: Print port from vars file
+      ansible.builtin.debug:
+        msg: "Server port is {{ port }}"

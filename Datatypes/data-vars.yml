@@ -1,0 +1,28 @@
+# data-types.yaml
+
+string_var: "nginx"             # String
+int_var: 10                     # Integer
+float_var: 12.5                 # Float
+bool_true: true                 # Boolean True
+bool_false: false               # Boolean False
+null_var: null                  # Null value
+
+list_var:                       # List
+  - nginx
+  - httpd
+  - mysql
+
+dict_var:                       # Dictionary
+  name: nginx
+  port: 80
+  state: present
+
+nested_dict:                    # Nested Dictionary
+  app:
+    name: myapp
+    version: 1.2
+    services:
+      - web
+      - db
+      - cache
+

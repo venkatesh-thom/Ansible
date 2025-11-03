@@ -1,0 +1,16 @@
+- name: List Filters Example
+  hosts: localhost
+  connection: local
+  vars:
+    mylist: [1,2,3]
+  tasks:
+    - name: Apply list filters
+      ansible.builtin.debug:
+        msg: |
+          Length: {{ mylist | length }}
+          First: {{ mylist | first }}
+          Last: {{ mylist | last }}
+          Sorted: {{ mylist | sort }}
+          Reversed: {{ mylist | reverse }}
+          Unique: {{ mylist | unique }}
+          Random: {{ mylist | random }}

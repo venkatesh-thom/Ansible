@@ -1,0 +1,13 @@
+- name: Loop over dictionary
+  hosts: localhost
+  connection: local
+  vars:
+    server_info:
+      web: "10.0.0.1"
+      back: "10.0.0.2"
+      db: "10.0.0.3"
+  tasks:
+    - name: Display server info
+      ansible.builtin.debug:
+        msg: "Server {{ item.key }} has IP {{ item.value }}"
+      loop: "{{ server_info | dict2items }}"

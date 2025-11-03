@@ -1,0 +1,18 @@
+- name: loop over list of dictionary
+  hosts: localhost  
+  vars:
+    concepts:
+      cloud: aws
+      cm: ansible
+      os: linux
+
+  tasks:
+    - name: Loop dictionary
+      ansible.builtin.debug:
+        msg: "Key={{ item.key }}, Value={{ item.value }}"
+      loop: "{{ concepts | dict2items }}"
+
+# dict2items to convert it into a list of dictionaries
+# item is temp var assigned to each iteration 
+# item.key Accesses the key of each pair
+# item.value Accesses the value of each pair

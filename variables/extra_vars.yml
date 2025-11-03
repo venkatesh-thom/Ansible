@@ -1,0 +1,14 @@
+- name: Extra Vars Example
+  hosts: webservers
+  tasks:
+    - name: Install package from extra vars
+      ansible.builtin.yum:
+        name: "{{ package_name }}"
+        state: present
+
+    - name: Show port from extra vars
+      ansible.builtin.debug:
+        msg: "Server port is {{ port }}"
+
+
+# ansible-playbook main.yml -e "package_name=httpd port=8080"

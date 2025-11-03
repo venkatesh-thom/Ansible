@@ -1,0 +1,102 @@
+---
+- name: 🔍 All Ansible Filters Demo
+  hosts: localhost
+  connection: local
+
+  vars:
+    # STRING VARIABLES
+    text: "  DevOps Automation  "
+
+    # LIST VARIABLES
+    mylist:                 # [3, 1, 2, 2]
+      - 3
+      - 1
+      - 2
+      - 2
+
+    # DICTIONARY VARIABLES
+    mydict:               # {'cloud': 'aws', 'cm': 'ansible'}
+      cloud: aws
+      cm: ansible
+
+    # NUMBER VARIABLES
+    numbers: [-5, 2, 8]
+
+    # BOOLEAN VARIABLES
+    myvar: null
+    cloud_list: 
+       - "aws"
+       - "gcp"
+       - "azure"
+
+  tasks:
+
+  # -------------------------------------------------------------
+  # 🧠 1️⃣ STRING FILTERS
+  # -------------------------------------------------------------
+  - name: 🧩 String Filters Demo
+    ansible.builtin.debug:
+      msg: |
+        Original Text: {{ text }}
+        Lowercase: {{ text | lower }}
+        Uppercase: {{ text | upper }}
+        Capitalized: {{ text | capitalize }}
+        Title Case: {{ text | title }}
+        Trimmed: {{ text | trim }}
+        Replace: {{ text | replace("DevOps", "DevSecOps") }}
+        Split: {{ text | trim | split(" ") }}
+        Length: {{ text | trim | length }}
+        StartsWith 'Dev': {{ text | trim.startswith("Dev") }}
+        EndsWith 'ion': {{ text | trim.endswith("ion") }}
+
+  # -------------------------------------------------------------
+  # 🧮 2️⃣ LIST FILTERS
+  # -------------------------------------------------------------
+  - name: 🧩 List Filters Demo
+    ansible.builtin.debug:
+      msg: |
+        Original List: {{ mylist }}
+        Length: {{ mylist | length }}
+        First Item: {{ mylist | first }}
+        Last Item: {{ mylist | last }}
+        Sorted: {{ mylist | sort }}
+        Reversed: {{ mylist | reverse }}
+        Unique: {{ mylist | unique }}
+        Random Element: {{ mylist | random }}
+
+  # -------------------------------------------------------------
+  # 🗂️ 3️⃣ DICTIONARY FILTERS
+  # -------------------------------------------------------------
+  - name: 🧩 Dictionary Filters Demo
+    ansible.builtin.debug:
+      msg: |
+        Original Dict: {{ mydict }}
+        Keys: {{ mydict.keys() | list }}
+        Values: {{ mydict.values() | list }}
+        Dict2Items: {{ mydict | dict2items }}
+        Combine with new key: {{ mydict | combine({'os':'linux'}) }}
+
+  # -------------------------------------------------------------
+  # 🔢 4️⃣ NUMBER FILTERS
+  # -------------------------------------------------------------
+  - name: 🧩 Number Filters Demo
+    ansible.builtin.debug:
+      msg: |
+        Original Numbers: {{ numbers }}
+        Abs of first: {{ numbers[0] | abs }}
+        Max: {{ numbers | max }}
+        Min: {{ numbers | min }}
+        Sum: {{ numbers | sum }}
+        Random (0-100): {{ 100 | random }}
+
+  # -------------------------------------------------------------
+  # ✅ 5️⃣ BOOLEAN / TEST FILTERS
+  # -------------------------------------------------------------
+  - name: 🧩 Boolean / Test Filters Demo
+    ansible.builtin.debug:
+      msg: |
+        Is 'myvar' defined?: {{ myvar is defined }}
+        Is 'myvar' none?: {{ myvar is none }}
+        1 is truthy?: {{ 1 is truthy }}
+        0 is falsy?: {{ 0 is falsy }}
+        'aws' in cloud_list?: {{ 'aws' in cloud_list }}

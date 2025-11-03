@@ -1,0 +1,21 @@
+# [webservers]
+# web1 ansible_host=192.168.1.10 ansible_user=ec2-user
+# web2 ansible_host=192.168.1.11 ansible_user=ec2-user
+
+# [webservers:vars]
+# package_name=nginx
+
+# add above in inventory file
+
+
+- name: Inventory Variables Example
+  hosts: webservers
+  tasks:
+    - name: Install package from inventory var
+      ansible.builtin.yum:
+        name: "{{ package_name }}"
+        state: present
+
+    - name: Print port from inventory
+      ansible.builtin.debug:
+        msg: "Server port is {{ port }}"

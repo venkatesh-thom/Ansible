@@ -1,0 +1,9 @@
+- name: Install package             # play description
+  hosts: webservers                 # managed hosts,group in inventory
+  vars:                             # var 
+    package_name: nginx             # var declared
+  tasks:                            # list of tasks
+    - name: Install the package     # task description
+      ansible.builtin.apt:          # yum module
+        name: "{{ package_name }}"  # var used
+        state: present 

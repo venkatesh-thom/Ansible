@@ -1,0 +1,36 @@
+- name: Data Types Example     # play description ->list of plays
+  hosts: localhost             # connect to localhost
+  vars_files:                  # var files->list
+    - data-vars.yml
+  tasks:                      # task -> list of tasks
+    - name: Show string variable  # task description
+      ansible.builtin.debug:
+        msg: "Service name is {{ string_var }}" # {{}}->to access var
+
+    - name: Show integer and float
+      ansible.builtin.debug:
+        msg: "Int: {{ int_var }}, Float: {{ float_var }}"   # "msg": "Int: 10, Float: 12.5"
+
+    - name: Show boolean values
+      ansible.builtin.debug:
+        msg: "Bool true: {{ bool_true }}, Bool false: {{ bool_false }}"
+
+    - name: Show list variable
+      ansible.builtin.debug:
+        msg: "Installed packages: {{ list_var }}"   # "msg": "Installed packages: ['nginx', 'httpd', 'mysql']"
+
+    - name: Access specific list item
+      ansible.builtin.debug:
+        msg: "First package is {{ list_var[0] }}"
+
+    - name: Show dictionary variable
+      ansible.builtin.debug:
+        msg: "dictionary is : {{ dict_var}}"
+
+    - name: Show dictionary variables each
+      ansible.builtin.debug:
+        msg: "App {{ dict_var.name }} runs on port {{ dict_var.port }}"
+
+    - name: Access nested dictionary
+      ansible.builtin.debug:
+        msg: "Nested app name: {{ nested_dict.app.name }} | Services: {{ nested_dict.app.services }}"

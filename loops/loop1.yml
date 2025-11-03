@@ -1,0 +1,17 @@
+- name: loop over list of ele in var
+  hosts: localhost
+  vars:
+    tools:
+      - linux
+      - ansible
+      - docker
+  tasks:
+    - name: Install tools
+      ansible.builtin.debug:
+        msg: "Installing {{ item }}"
+      loop: "{{ tools }}"               
+
+
+
+      # loop: "{{ list_variable }}"
+      # item is the default variable for each element in the loop

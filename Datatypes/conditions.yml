@@ -1,0 +1,33 @@
+---
+- name: Conditional examples
+  hosts: localhost
+  connection: local
+
+  vars:
+    course: "Ansible"
+    duration: 30
+    is_live: true
+    tools:
+      - ansible
+      - docker
+
+  tasks:
+    - name: Print if live course
+      ansible.builtin.debug:
+        msg: "Live course running!"
+      when: is_live
+
+    - name: Print if duration > 20
+      ansible.builtin.debug:
+        msg: "Long course!"
+      when: duration > 20
+
+    - name: Print if ansible in tools
+      ansible.builtin.debug:
+        msg: "Ansible included!"
+      when: "'ansible' in tools"
+
+    - name: Skip if not matching course
+      ansible.builtin.debug:
+        msg: "Welcome to {{ course }}"
+      when: course == "Ansible"

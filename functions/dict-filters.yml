@@ -1,0 +1,14 @@
+- name: Dictionary Filters Example
+  hosts: localhost
+  connection: local
+  vars:
+    mydict:
+      name: jgorle
+      role: ansible
+  tasks:
+    - name: Apply dictionary filters
+      ansible.builtin.debug:
+        msg: |
+          Keys: {{ mydict.keys() | list }}
+          Values: {{ mydict.values() | list }}
+          Items: {{ mydict.items() | list }}
